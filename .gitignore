@@ -60,6 +60,8 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+*.sqlite3
+*.sqlite
 
 # Flask stuff:
 instance/
@@ -128,22 +130,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Папки, создаваемые средой разработки
-.idea
-.DS_Store
-.AppleDouble
-.LSOverride
-
-*.sublime-project
-*.sublime-workspace
-
+#vscode
 .vscode/
-*.code-workspace
-
-# Local History for Visual Studio Code
-.history/
-
-.mypy_cache
-
-# папки со статикой и медиа
-media/

@@ -1,27 +1,20 @@
+from core.models import BasePublishedModel
 from django.contrib.auth import get_user_model
 from django.db import models
 
 User = get_user_model()
 
-class Category(models.Model):
+class Category(BasePublishedModel):
     title = models.CharField(max_length=256)
     description = models.TextField()
     slug = models.SlugField(unique=True)
-    is_published = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.created_at.__str__()
-
-class Location(models.Model):
-    name = models.CharField(max_length=256)
-    is_published = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.created_at.__str__()
     
-class Post(models.Model):
+
+class Location(BasePublishedModel):
+    name = models.CharField(max_length=256)
+    
+    
+class Post(BasePublishedModel):
     title = models.CharField(max_length=256)
     text = models.TextField()
     pub_date = models.DateTimeField()
@@ -43,8 +36,4 @@ class Post(models.Model):
         null=True,
         related_name='posts_in_category'
     )
-    is_published = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.created_at.__str__()
+    
