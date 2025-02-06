@@ -52,6 +52,10 @@ class LocationAdmin(admin.ModelAdmin):
     )
     list_display = (
         'name',
+        'is_published'
+    )
+    list_editable = (
+        'is_published',
     )
     search_fields = ('name',)
 
