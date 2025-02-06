@@ -23,7 +23,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('category', 'author', 'location')
     list_display_links = ('title',)
 
-    
+
 class PostInline(admin.StackedInline):
     model = Post
     extra = 0
@@ -58,6 +58,7 @@ class LocationAdmin(admin.ModelAdmin):
         'is_published',
     )
     search_fields = ('name',)
+
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Location, LocationAdmin)
