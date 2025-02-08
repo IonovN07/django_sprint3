@@ -32,7 +32,7 @@ class Category(BasePublishedModel):
         ordering = ('-title',)
 
     def __str__(self):
-        return f'{self.title[:15]} {self.description[:15]}'
+        return f'{self.title[:21]} {self.description[:21]}'
 
 
 class Location(BasePublishedModel):
@@ -44,7 +44,7 @@ class Location(BasePublishedModel):
         ordering = ('-name',)
 
     def __str__(self):
-        return self.name[:15]
+        return self.name[:21]
 
 
 class Post(BasePublishedModel):
@@ -79,5 +79,5 @@ class Post(BasePublishedModel):
         ordering = ('-pub_date',)
 
     def __str__(self):
-        return (f'{self.title[:23]} {self.text[:23]} {self.location.name[:23]}'
-                f'{self.category.title[:23]}')
+        return (f'{self.title[:21]} {self.text[:21]} {self.location.name[:21]}'
+                f'{self.category.title[:21]}')
