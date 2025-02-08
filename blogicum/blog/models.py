@@ -29,10 +29,10 @@ class Category(BasePublishedModel):
     class Meta():
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
-        ordering = ['-title']
+        ordering = ('-title',)
 
     def __str__(self):
-        return f'{self.title[:30]} {self.description[30]}'
+        return f'{self.title[:15]} {self.description[:15]}'
 
 
 class Location(BasePublishedModel):
@@ -41,10 +41,10 @@ class Location(BasePublishedModel):
     class Meta():
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
-        ordering = ['-name']
+        ordering = ('-name',)
 
     def __str__(self):
-        return self.name[:30]
+        return self.name[:15]
 
 
 class Post(BasePublishedModel):
@@ -76,8 +76,8 @@ class Post(BasePublishedModel):
     class Meta():
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
-        ordering = ['-pub_date']
+        ordering = ('-pub_date',)
 
     def __str__(self):
-        return (f'{self.title[:30]} {self.text[:30]} {self.location[:30]}'
-                f'{self.author[:30]} {self.category[:30]}')
+        return (f'{self.title[:23]} {self.text[:23]} {self.location.name[:23]}'
+                f'{self.category.title[:23]}')
