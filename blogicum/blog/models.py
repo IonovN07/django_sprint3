@@ -1,9 +1,21 @@
-from core.models import BasePublishedModel
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils import timezone
 
 User = get_user_model()
 
+
+class BasePublishedModel(models.Model):
+    is_published = models.BooleanField(
+        default=True,
+        verbose_name='Опубликовано',
+        help_text='Снимите галочку, чтобы скрыть публикацию.')
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Добавлено')
+
+    class Meta:
+        abstract = True
 
 class Category(BasePublishedModel):
     title = models.CharField(max_length=256, verbose_name='Заголовок')
@@ -19,7 +31,7 @@ class Category(BasePublishedModel):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return self.title
+        return self.title, self.description, self.slug
 
 
 class Location(BasePublishedModel):
@@ -62,6 +74,7 @@ class Post(BasePublishedModel):
     class Meta():
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
+        ordering = ('-pub_date',)
 
     def __str__(self):
         return self.title
