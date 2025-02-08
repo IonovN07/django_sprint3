@@ -6,12 +6,12 @@ from blog.models import Category, Post
 
 def filter_published(posts=None):
     if posts is None:
-         posts = Post.objects.all()
+        posts = Post.objects.all()
     return posts.select_related(
         'category', 'location', 'author'
     ).filter(
-        is_published=True, 
-        category__is_published=True, 
+        is_published=True,
+        category__is_published=True,
         pub_date__lt=timezone.now())
 
 
@@ -30,8 +30,10 @@ def post_detail(request, post_id):
 
 
 def category_posts(request, category_slug):
-    category = get_object_or_404(Category, slug=category_slug)
-    
+    category = get_object_or_404(
+        Category,
+        slug=category_slug,
+        is_published=True)
     return render(
         request,
         'blog/category.html',
