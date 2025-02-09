@@ -4,9 +4,7 @@ from django.utils import timezone
 from blog.models import Category, Post
 
 
-def filter_published(posts=None):
-    if posts is None:
-        posts = Post.objects.all()
+def filter_published(posts = Post.objects.all()):
     return posts.select_related(
         'category', 'location', 'author'
     ).filter(
